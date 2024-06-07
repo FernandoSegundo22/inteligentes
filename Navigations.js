@@ -20,8 +20,8 @@ function StackGroup() {
                 name='Details'
                 component={DetailsScreen}/>
         </Stack.Navigator>
-    )
-}
+    );
+};
 
 const Tab = createBottomTabNavigator();
 
@@ -30,7 +30,7 @@ function TabGroup() {
         <Tab.Navigator>
             <Tab.Screen
                 name="Feed"
-                component={Feed}
+                component={StackGroup}
                 options={{
                     tabBarLabel: "Home",
                     tabBarIcon: () => <Ionicons name="home" size={32} color="blue"/>
@@ -42,7 +42,7 @@ function TabGroup() {
                 name="Notifications"
                 component={Notifications}
                 options={{
-                    tabBarLabel:"Notifications",
+                    xºBarLabel:"Notifications",
                     tabBarIcon: () => <Ionicons name=  "notifications-outline" size={32} color={"black"}/>
                 }} 
             

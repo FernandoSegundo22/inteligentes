@@ -1,9 +1,12 @@
-import { SafeAreaView, StyleSheet, Text, View, FlatList, Image } from 'react-native';
-import React, { useEffect, useState } from 'react';
- 
+import { SafeAreaView, StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
+import { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native'; 
+
+
 export default function Feed(){
 
-    
+    const navigation = useNavigation();
+
     const [products, setProducts] = useState([]);
 
     useEffect(() =>{
@@ -25,6 +28,11 @@ export default function Feed(){
     };
 
 
+    const handleItemPress = (item) => {
+        navigation.navigate('Details', {product: item});
+    }
+
+
     return(
         <SafeAreaView>
             <View>
@@ -32,18 +40,21 @@ export default function Feed(){
                 data={products} 
                 renderItem={({ item }) => (
                     <View>
-                        <Image 
-                            style={styles.image}
-                            source={{uri: item.image}}>
-                        </Image>
 
-                        <Text>{item.title}</Text>
-                        </View>
+                        <TouchableOpacity onPress={() => handleItemPress(item)}>
+                            <Image 
+                                style={styles.image}
+                                source={{uri: item.image}}>
+                            </Image>
+                            <Text>{item.title}</Text>
+                        </TouchableOpacity>
+
+                    </View>
                     )}>
                     </FlatList>
             </View>
         </SafeAreaView>
-    );
+    ); 
 }
 
 const styles = StyleSheet.create({
@@ -51,7 +62,7 @@ const styles = StyleSheet.create({
     {
         paddingTop: 10,
         marginTop: 50
-    },
+    }, 
 
     texto:{
         fontSize: 20,
